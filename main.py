@@ -13,6 +13,7 @@ for product_row in range(2,
     inventory = product_list.cell(product_row, 2).value
     price = product_list.cell(product_row, 3).value
     product_number = product_list.cell(product_row, 1).value
+    inventory_price = product_list.cell(product_row, 5)
 
     # calculate how products per supplier
     if supplier_name in products_per_supplier:
@@ -23,7 +24,7 @@ for product_row in range(2,
         products_per_supplier[supplier_name] = 1
 
     # calculate total value of inventory per supplier
-    if supplier_name in total_value_per_supplier :
+    if supplier_name in total_value_per_supplier:
         current_total_value = total_value_per_supplier.get(supplier_name)
         total_value_per_supplier[supplier_name] = current_total_value + inventory * price
     else:
@@ -33,4 +34,10 @@ for product_row in range(2,
     if inventory < 25:
         product_under_25_inv[product_number] = int(inventory)
 
+    # add value for total inventory price
+    inventory_price.value = inventory * price
+
+inv_file.save("inventory_with_total_value.xlsx ")
 print(product_under_25_inv)
+print(total_value_per_supplier)
+print(products_per_supplier)
