@@ -11,7 +11,7 @@ for product_row in range(2,
     supplier_name = product_list.cell(product_row, 4).value  # each cell for the column 4 Suppliers
 
     if supplier_name in products_per_supplier:
-        current_num_products = products_per_supplier[supplier_name]
+        current_num_products = products_per_supplier.get(supplier_name)
         products_per_supplier[supplier_name] = current_num_products + 1
     else:
         print("adding a new supplier")
